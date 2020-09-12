@@ -52,7 +52,8 @@ class BarChart extends Component {
                         title: {
                             display: true,
                             text: 'Number of Segment Categories',
-                            fontSize: 20
+                            fontSize: 20,
+                            fontColor: '#fff'
                         },
                         legend: {
                             display: false,
@@ -61,9 +62,18 @@ class BarChart extends Component {
                         scales: {
                             xAxes: [{
                                 ticks: {
-                                    beginAtZero: true
-                                }
+                                    beginAtZero: true,
+                                    fontColor: '#fff',
+                                    fontSize: 14
+                                },
+                            }],
+                            yAxes: [{
+                                ticks: {
+                                    fontColor: '#fff',
+                                    fontSize: 14
+                                },
                             }]
+
                         }
                     }}
                 />

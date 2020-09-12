@@ -3,3 +3,9 @@
 3. WidgetContainer Components should also receive the raw queried data, and will prepare it for display using a WidgetDisplay Component
 4. WidgetContainer Components should return the Widget Component with a function call inside where the WidgetDisplay is called upon.
 5. Widget Component will receive the generated output from the WidgetDisplay.
+
+
+
+To do:
+
++ Update Charts CSS 

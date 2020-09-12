@@ -48,7 +48,9 @@ class GraphChart extends Component {
                         title: {
                             display: true,
                             text: 'Number of Entries for Funds, Share Classes, SubFunds',
-                            fontSize: 20
+                            fontSize: 20,
+                            fontColor: '#fff',
+                            padding: 40
                         },
                         legend: {
                             display: false,
@@ -57,7 +59,15 @@ class GraphChart extends Component {
                         scales: {
                             yAxes: [{
                                 ticks: {
-                                    beginAtZero: true
+                                    beginAtZero: true,
+                                    fontColor: '#fff',
+                                    fontSize: 14
+                                }
+                            }],
+                            xAxes: [{
+                                ticks: {
+                                    fontColor: '#fff',
+                                    fontSize: 14
                                 }
                             }]
                         }

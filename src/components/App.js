@@ -26,13 +26,14 @@ class App extends Component {
         <NumberWidget headline={'Total Fund Types'} data={GetNumberData('fund_name')} />
         <NumberWidget headline={'Report Period in Days'} data={GetNumberData('date')} />
         <NumberWidget headline={'Total Sub Class Types'} data={GetNumberData('share_class_name')} />
-        <NumberWidget headline={'Total Alert Types'} data={GetNumberData('nb_alerts')} />
-        <GraphWidget headline={'Total Entry per Type'} data={GetGraphData(['fund_name', 'subfund_name', 'share_class_name'])} colspan={4} rowspan={1} />
-        <NumberWidget headline={'Total Sub Funds'} data={GetNumberData('subfund_name')} />
+        <NumberWidget headline={'Total Entries'} data={GetNumberData('index')} />
         <ListWidget headline={'Registered Sub Funds'} data={GetListData('subfund_name')} rowspan={2} />
+        <GraphWidget headline={'Total Entry per Type'} data={GetGraphData(['fund_name', 'subfund_name', 'share_class_name'])} colspan={3} rowspan={1} />
+        <NumberWidget headline={'Total Sub Funds'} data={GetNumberData('subfund_name')} />
         <ListWidget headline={'Registered Share Classes'} data={GetListData('share_class_name')} rowspan={2} />
         <ListWidget headline={'Registered Dates'} data={GetListData('date')} rowspan={2} />
         <ListWidget headline={'Report Status'} data={GetListData('report_status')} />
+        <NumberWidget headline={'Total Alert Types'} data={GetNumberData('nb_alerts')} />
       </div>
     );
 

@@ -7,7 +7,7 @@ export default class ListItem extends Component {
     render() {
         return (
             <li className="ListItem">
-                <div className="label">
+                <div className="value">
                     {this.props.listValue}
                 </div>
             </li>
