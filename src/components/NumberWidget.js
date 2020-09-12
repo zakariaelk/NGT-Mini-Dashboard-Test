@@ -51,7 +51,7 @@ class NumberWidget extends Component {
 
     render() {
         return (
-            <Widget headline={this.props.headline} isLoading={this.state.loading} numberValue={this.showNumberVal()} />
+            <Widget headline={this.props.headline} colspan={this.props.colspan} rowspan={this.props.rowspan} isLoading={this.state.loading} numberValue={this.showNumberVal()} />
         )
     }
 

@@ -3,6 +3,7 @@ import Loading from './Loading';
 import NumberDisplay from './NumberDisplay';
 import ListDisplay from './ListDisplay';
 import GraphChart from './GraphChart';
+import BarChart from './BarChart';
 import '../assets/css/Widget.css';
 
 
@@ -33,6 +34,8 @@ class Widget extends Component {
             widgetType = <ListDisplay fundData={this.props.listData} />
         } else if (this.props.graphData) {
             widgetType = <GraphChart headline={this.props.headline} graphData={this.props.graphData} />
+        } else if (this.props.barData) {
+            widgetType = <BarChart headline={this.props.headline} barData={this.props.barData} />
         } else {
             widgetType = null;
         }

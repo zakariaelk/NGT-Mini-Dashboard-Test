@@ -24,7 +24,7 @@ class ListDisplay extends Component {
 
                         return (
                             <div key={fundData.indexOf(fundCountValue)}>
-                                <h3>Total Entries {fundCountValue}</h3>
+                                {/* <h3>Total Entries {fundCountValue}</h3> */}
                                 {fundSingleItem}
                             </div>
                         );

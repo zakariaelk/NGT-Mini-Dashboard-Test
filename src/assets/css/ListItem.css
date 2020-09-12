@@ -2,12 +2,12 @@
 .ListItem {
     display: flex;
     align-items: center;
-    padding: 0.5rem;
+    padding: 0.4rem;
 }
 
 .ListItem .value {
     text-align: right;
-    font-size: 2rem;
+    font-size: 2.5rem;
     font-weight: bold;
     width: 3rem;
     padding-right: 1rem;
