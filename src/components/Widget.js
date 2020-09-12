@@ -1,0 +1,57 @@
+import React, { Component } from 'react';
+import Loading from './Loading';
+import NumberDisplay from './NumberDisplay';
+import ListDisplay from './ListDisplay';
+import GraphChart from './GraphChart';
+import '../assets/css/Widget.css';
+
+
+
+class Widget extends Component {
+
+    constructor(props) {
+        super(props);
+
+        // Create inline styles to make grid elements span multiple rows/columns
+        this.spanStyles = {};
+
+        if (props.colspan && props.colspan !== 1) {
+            this.spanStyles.gridColumn = `span ${ props.colspan }`;
+        }
+        if (props.rowspan && props.rowspan !== 1) {
+            this.spanStyles.gridRow = `span ${ props.rowspan }`;
+        }
+    }
+
+    render() {
+
+        let widgetType = null;
+
+        if (this.props.numberValue) {
+            widgetType = <NumberDisplay value={this.props.numberValue} />
+        } else if (this.props.listData) {
+            widgetType = <ListDisplay fundData={this.props.listData} />
+        } else if (this.props.graphData) {
+            widgetType = <GraphChart headline={this.props.headline} graphData={this.props.graphData} />
+        } else {
+            widgetType = null;
+        }
+
+        return (
+            <div style={this.spanStyles} className="Widget">
+                <div className="header">
+                    <h2>
+                        {this.props.headline}
+                    </h2>
+                    {this.props.isLoading ? <Loading /> : ""}
+                </div>
+                <div className="content">
+                    {widgetType}
+                </div>
+            </div>
+        );
+    }
+
+}
+
+export default Widget;
