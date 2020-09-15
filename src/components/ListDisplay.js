@@ -14,7 +14,6 @@ class ListDisplay extends Component {
         return (
             <ul className="ListDisplay">
                 {
-
                     fundListItems = fundData.map(fundArray => {
                         fundSingleItem = fundArray.map(fundValue => {
                             [fundNameValue, fundCountValue] = fundValue;

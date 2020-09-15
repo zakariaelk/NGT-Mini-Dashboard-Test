@@ -7,6 +7,7 @@ import BarChart from './BarChart';
 import '../assets/css/Widget.css';
 
 
+let propTypeValue = null;
 
 class Widget extends Component {
 
@@ -25,20 +26,30 @@ class Widget extends Component {
         }
     }
 
+    checkPropType(propType) {
+        return propType ? propTypeValue = propType : null;
+    }
+
     render() {
 
         let widgetType = null;
 
+
+
         if (this.props.numberValue) {
             widgetType = <NumberDisplay value={this.props.numberValue} />
-        } else if (this.props.listData) {
+        }
+
+        if (this.props.listData) {
             widgetType = <ListDisplay fundData={this.props.listData} />
-        } else if (this.props.graphData) {
+        }
+
+        if (this.props.graphData) {
             widgetType = <GraphChart headline={this.props.headline} graphData={this.props.graphData} />
-        } else if (this.props.barData) {
+        }
+
+        if (this.props.barData) {
             widgetType = <BarChart headline={this.props.headline} barData={this.props.barData} />
-        } else {
-            widgetType = null;
         }
 
         return (

@@ -1,5 +1,5 @@
 .Widget {
-    background-color: #34495e;
+    background-color: #122d4c;
     padding: 1rem;
 }
 
@@ -32,6 +32,7 @@
     line-height: 1;
     text-overflow: ellipsis;
     text-transform: capitalize;
+    color: #23d795;
 }
 
 .Widget .Loading {

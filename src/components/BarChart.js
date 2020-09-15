@@ -14,7 +14,7 @@ class BarChart extends Component {
             labels: ['Fund Names', 'Sub Fund Names', 'Share Classes', 'Data Report Duration', 'Alert Types'],
             datasets: [
                 {
-                    label: `Types Per Segment`,
+                    label: `Entry Types Per Segment`,
                     backgroundColor: [
                         'rgba(255, 99, 132, 0.2)',
                         'rgba(54, 162, 235, 0.2)',
