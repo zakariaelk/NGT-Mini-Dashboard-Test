@@ -1,72 +1,103 @@
 import React, { Component } from 'react';
-import NumberWidget from './NumberWidget';
-import ListWidget from './ListWidget';
-import GraphWidget from './GraphWidget';
-import BarWidget from './BarWidget';
+import firebase from 'firebase/app';
+import 'firebase/database';
+import Dashboard from './Dashboard'
 
-/* Data Queries */
-import GetNumberData from '../utils/GetNumberData';
-import GetListData from '../utils/GetListData';
-import GetGraphData from '../utils/GetGraphData';
-import GetBarData from '../utils/GetBarData';
-
-/* Styles */
-import '../assets/css/App.css';
-
-
-let renderedContent = null;
-let loading = null;
-let fundData = null;
+let localStorageRef = localStorage.getItem('funds');
 
 class App extends Component {
 
-
-  render() {
-
-    fundData = this.props.data;
-    loading = this.props.loading;
-
-    if (fundData !== null) {
-
-      renderedContent =
-        <div className="App">
-          <ListWidget headline={'Registered Funds'} data={GetListData(fundData, 'fund_name')} isLoading={loading} rowspan={2} />
-          <BarWidget headline={'Types Per Segment'} data={GetBarData(fundData, ['fund_name', 'subfund_name', 'share_class_name', 'date', 'nb_alerts'])} isLoading={loading} colspan={3} rowspan={2} />
-          <NumberWidget headline={'Total Fund Types'} data={GetNumberData(fundData, 'fund_name')} isLoading={loading} />
-          <NumberWidget headline={'Report Period in Days'} data={GetNumberData(fundData, 'date')} isLoading={loading} />
-          <NumberWidget headline={'Total Sub Class Types'} data={GetNumberData(fundData, 'share_class_name')} isLoading={loading} />
-          <NumberWidget headline={'Total Entries'} data={GetNumberData(fundData, 'index')} isLoading={loading} />
-          <ListWidget headline={'Registered Sub Funds'} data={GetListData(fundData, 'subfund_name')} isLoading={loading} rowspan={2} />
-          <GraphWidget headline={'Total Entry per Type'} data={GetGraphData(fundData, ['fund_name', 'subfund_name', 'share_class_name'])} isLoading={loading} colspan={3} rowspan={1} />
-          <NumberWidget headline={'Total Sub Funds'} data={GetNumberData(fundData, 'subfund_name')} isLoading={loading} />
-          <ListWidget headline={'Registered Share Classes'} data={GetListData(fundData, 'share_class_name')} isLoading={loading} rowspan={2} />
-          <ListWidget headline={'Registered Dates'} data={GetListData(fundData, 'date')} isLoading={loading} />
-          <ListWidget headline={'Report Status'} data={GetListData(fundData, 'report_status')} isLoading={loading} />
-          <NumberWidget headline={'Total Alert Types'} data={GetNumberData(fundData, 'nb_alerts')} isLoading={loading} />
-        </div>;
-    } else {
-      renderedContent =
-        <div className="App">
-          <ListWidget headline={'Registered Funds'} data={[]} isLoading={loading} rowspan={2} />
-          <BarWidget headline={'Types Per Segment'} isLoading={loading} colspan={3} rowspan={2} />
-          <NumberWidget headline={'Total Fund Types'} data={[]} isLoading={loading} />
-          <NumberWidget headline={'Report Period in Days'} data={[]} isLoading={loading} />
-          <NumberWidget headline={'Total Sub Class Types'} data={[]} isLoading={loading} />
-          <NumberWidget headline={'Total Entries'} data={[]} isLoading={loading} />
-          <ListWidget headline={'Registered Sub Funds'} data={[]} isLoading={loading} rowspan={2} />
-          <GraphWidget headline={'Total Entry per Type'} isLoading={loading} colspan={3} rowspan={1} />
-          <NumberWidget headline={'Total Sub Funds'} data={[]} isLoading={loading} />
-          <ListWidget headline={'Registered Share Classes'} data={[]} isLoading={loading} rowspan={2} />
-          <ListWidget headline={'Registered Dates'} data={[]} isLoading={loading} />
-          <ListWidget headline={'Report Status'} data={[]} isLoading={loading} />
-          <NumberWidget headline={'Total Alert Types'} data={[]} isLoading={loading} />
-        </div>
+    constructor(props) {
+        super(props);
+        this.state = {
+            loading: true,
+            data: null,
+        }
     }
 
-    return renderedContent;
+
+    firebaseConfig = {
+        apiKey: "AIzaSyDLRJb6bE4kcNn7saLZ7g9Rus45POWXkI8",
+        authDomain: "ngt-dashboard-abc64.firebaseapp.com",
+        databaseURL: "https://ngt-dashboard-abc64.firebaseio.com",
+        projectId: "ngt-dashboard-abc64",
+        storageBucket: "ngt-dashboard-abc64.appspot.com",
+        messagingSenderId: "250549245220",
+        appId: "1:250549245220:web:6b7441f680f5e255220fb1",
+        measurementId: "G-E1CZQYQE35"
+    };
 
 
-  }
+    // populateStorage() {
+    //   localStorage.setItem('funds', JSON.stringify(this.state.data));
+    // }
+
+
+    // GET DATA
+    gotData = (fundsRef) => {
+        const funds = fundsRef.val();
+
+        this.setState({
+            data: Object.values(funds),
+            loading: false
+        })
+        console.log('weve set the fetched values to state');
+        console.log(this.state.data);
+
+        localStorage.setItem('funds', JSON.stringify(this.state.data));
+    }
+
+    //ERR DATA
+    errData = (error) => {
+        console.log(error);
+    }
+
+
+    // FETCHING DATA
+
+    fetchData = () => {
+
+        if (!firebase.apps.length) {
+            firebase.initializeApp(this.firebaseConfig);
+        }
+
+        const database = firebase.database();
+        console.log(database);
+
+        const fundsRef = database.ref('funds');
+        fundsRef.limitToFirst(15360).on('value', this.gotData, this.errData);
+    }
+
+    componentDidMount() {
+
+        console.log(this.state.loading);
+
+        if (localStorageRef !== null) {
+            console.log('setting state with localstorage Data');
+            this.setState({
+                loading: false,
+                data: JSON.parse(localStorageRef)
+            });
+        } else {
+            console.log('Fetching Data');
+            this.fetchData();
+        }
+
+    }
+
+
+
+    componentDidUpdate() {
+        localStorage.setItem('funds', JSON.stringify(this.state.data));
+    }
+
+
+    render() {
+        return (
+            <Dashboard loading={this.state.loading} data={this.state.data} />
+        )
+    }
+
 }
 
 export default App;

@@ -7,8 +7,6 @@ import BarChart from './BarChart';
 import '../assets/css/Widget.css';
 
 
-let propTypeValue = null;
-
 class Widget extends Component {
 
     constructor(props) {
@@ -26,15 +24,9 @@ class Widget extends Component {
         }
     }
 
-    checkPropType(propType) {
-        return propType ? propTypeValue = propType : null;
-    }
-
     render() {
 
         let widgetType = null;
-
-
 
         if (this.props.numberValue) {
             widgetType = <NumberDisplay value={this.props.numberValue} />

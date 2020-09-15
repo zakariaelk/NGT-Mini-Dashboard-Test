@@ -1,5 +1,3 @@
-// import data from '../assets/data/fund_data.json';
-
 let filteredData = []
 
 export default function GetBarData(data, dataType) {
@@ -15,8 +13,6 @@ export default function GetBarData(data, dataType) {
         }, {});
 
         const propLength = Object.keys(dataObj).length;
-        const propValue = entry;
-        // console.log(propLength);
         return propLength;
     })
 
