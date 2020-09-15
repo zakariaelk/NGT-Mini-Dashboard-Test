@@ -1,11 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './components/App';
+import FetchData from './components/FetchData';
 import * as serviceWorker from './utils/serviceWorker';
 
 ReactDOM.render(
-  <App />,
+  <FetchData />,
   document.getElementById('root')
 );
 

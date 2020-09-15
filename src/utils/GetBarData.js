@@ -1,8 +1,8 @@
-import data from '../assets/data/fund_data.json';
+// import data from '../assets/data/fund_data.json';
 
 let filteredData = []
 
-export default function GetBarData(dataType) {
+export default function GetBarData(data, dataType) {
     const extractedData = dataType.map(entry => {
 
         const dataObj = data.map(fund => fund[entry]).reduce(function (obj, item) {
@@ -16,7 +16,7 @@ export default function GetBarData(dataType) {
 
         const propLength = Object.keys(dataObj).length;
         const propValue = entry;
-        console.log(propLength);
+        // console.log(propLength);
         return propLength;
     })
 

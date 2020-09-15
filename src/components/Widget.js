@@ -15,6 +15,7 @@ class Widget extends Component {
 
         // Create inline styles to make grid elements span multiple rows/columns
         this.spanStyles = {};
+        this.isLoading = this.props.isLoading
 
         if (props.colspan && props.colspan !== 1) {
             this.spanStyles.gridColumn = `span ${ props.colspan }`;
@@ -46,7 +47,7 @@ class Widget extends Component {
                     <h2>
                         {this.props.headline}
                     </h2>
-                    {this.props.isLoading ? <Loading /> : ""}
+                    {(this.props.isLoading === true) ? <Loading /> : ""}
                 </div>
                 <div className="content">
                     {widgetType}

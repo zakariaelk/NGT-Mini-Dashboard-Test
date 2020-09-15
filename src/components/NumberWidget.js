@@ -6,14 +6,6 @@ import '../assets/css/NumberWidget.css';
 
 class NumberWidget extends Component {
 
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: true,
-            data: []
-        }
-    }
-
     showNumberVal() {
 
         if (this.props.data.length === 0) {
@@ -31,27 +23,12 @@ class NumberWidget extends Component {
     }
 
 
-    componentDidMount() {
 
-        let newState = { loading: false };
-
-
-        this.setState({
-            data: this.props.data,
-        })
-
-
-        setTimeout(() => {
-            this.setState(newState);
-        }, 1000)
-
-
-    }
 
 
     render() {
         return (
-            <Widget headline={this.props.headline} colspan={this.props.colspan} rowspan={this.props.rowspan} isLoading={this.state.loading} numberValue={this.showNumberVal()} />
+            <Widget headline={this.props.headline} isLoading={this.props.isLoading} colspan={this.props.colspan} rowspan={this.props.rowspan} numberValue={this.showNumberVal()} />
         )
     }
 

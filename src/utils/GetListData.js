@@ -1,6 +1,6 @@
-import data from '../assets/data/fund_data.json';
+// import data from '../assets/data/fund_data.json';
 
-export default function GetListData(dataType) {
+export default function GetListData(data, dataType) {
     const extractedData = Object.keys(data[0])
         .filter(entry => {
             return entry === dataType

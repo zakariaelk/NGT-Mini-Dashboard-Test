@@ -1,9 +1,9 @@
-import data from '../assets/data/fund_data.json';
+// import data from '../assets/data/fund_data.json';
 import '../assets/css/GraphChart.css';
 
 let registeredSegmentCount = null;
 
-export default function GetGraphData(selectedData) {
+export default function GetGraphData(data, selectedData) {
     const extractedData = selectedData.map(entry => {
 
         const dataObj = data.map(fund => fund[entry]).reduce(function (obj, item) {
@@ -16,7 +16,7 @@ export default function GetGraphData(selectedData) {
         }, {});
 
         registeredSegmentCount = Object.values(dataObj);
-        console.log(registeredSegmentCount[0]);
+        // console.log(registeredSegmentCount[0]);
         return registeredSegmentCount[0];
 
     })
