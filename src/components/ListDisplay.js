@@ -2,13 +2,14 @@ import React, { Component } from 'react';
 import ListItem from './ListItem';
 import '../assets/css/ListDisplay.css';
 
-let fundNameValue = null;
-let fundListItems = null;
-let fundSingleItem = null;
-let fundCountValue = null;
-
 class ListDisplay extends Component {
     render() {
+
+
+        let fundNameValue = null;
+        let fundSingleItem = null;
+        let fundListItems = null;
+        let fundCountValue = null;
 
         const fundData = this.props.fundData;
         return (

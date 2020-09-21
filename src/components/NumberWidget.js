@@ -14,9 +14,12 @@ class NumberWidget extends Component {
 
         const dataValue = this.props.data.map((value) => {
             const [valName, valNumber] = value;
+
             if (value !== undefined) {
-                return valNumber;
+                return (valName, valNumber);
             }
+
+            return valNumber
         })
 
         return dataValue;
