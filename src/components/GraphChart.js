@@ -10,7 +10,6 @@ class GraphChart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true,
             labels: ['Total by Fund Name', 'Total by Sub Fund Name', 'Total by Share Classe Name'],
             datasets: [
                 {

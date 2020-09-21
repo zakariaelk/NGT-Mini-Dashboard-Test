@@ -42,7 +42,7 @@ class App extends Component {
             loading: false
         })
         console.log('weve set the fetched values to state');
-        console.log(this.state.data);
+        // console.log(this.state.data);
 
         localStorage.setItem('funds', JSON.stringify(this.state.data));
     }
@@ -65,7 +65,7 @@ class App extends Component {
         console.log(database);
 
         const fundsRef = database.ref('funds');
-        fundsRef.limitToFirst(15360).on('value', this.gotData, this.errData);
+        fundsRef.limitToFirst(10000).on('value', this.gotData, this.errData);
     }
 
     componentDidMount() {

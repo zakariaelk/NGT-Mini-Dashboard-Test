@@ -20,7 +20,6 @@ let fundData = null;
 
 class Dashboard extends Component {
 
-
   render() {
 
     fundData = this.props.data;
@@ -64,7 +63,6 @@ class Dashboard extends Component {
     }
 
     return renderedContent;
-
 
   }
 }

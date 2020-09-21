@@ -10,7 +10,6 @@ class BarChart extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            loading: true,
             labels: ['Fund Names', 'Sub Fund Names', 'Share Classes', 'Data Report Duration', 'Alert Types'],
             datasets: [
                 {
